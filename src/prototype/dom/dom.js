@@ -613,8 +613,11 @@ Element.Methods = {
       if (content && content.toElement)
         content = content.toElement();
 
-      if (Object.isElement(content))
-        return element.update().insert(content);
+      if (Object.isElement(content)) {
+        element.innerHTML = '';
+        element.appendChild(content);
+        return element;
+      }
 
       content = Object.toHTML(content);
 
